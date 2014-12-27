@@ -2,6 +2,7 @@ package com.zyzzyxtech.ribbit;
 
 import java.util.Locale;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
