@@ -25,7 +25,9 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".LoginActivity"
+            >
         </activity>
     </application>
 
