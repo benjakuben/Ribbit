@@ -1,9 +1,13 @@
 package com.zyzzyxtech.ribbit;
 
+import java.util.List;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.support.v7.app.ActionBar;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -19,28 +24,26 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.List;
-
 
 public class EditFriendsActivity extends ListActivity {
+
+    protected ParseRelation<ParseUser> mFriendsRelation;
+    protected ParseUser mCurrentUser;
 
     public static final String TAG = EditFriendsActivity.class.getSimpleName();
 
     protected List<ParseUser> mUsers;
-    protected ParseRelation<ParseUser> mFriendsRelation;
-    protected ParseUser mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_edit_friends);
-        // Show the Up button in the action bar;
-
+        // Show the Up button in the action bar.
+//         setupActionBar();
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
-
 
     @Override
     protected void onResume() {
@@ -58,6 +61,7 @@ public class EditFriendsActivity extends ListActivity {
             @Override
             public void done(List<ParseUser> users, ParseException e) {
                 setProgressBarIndeterminateVisibility(false);
+
                 if (e == null) {
                     // Success
                     mUsers = users;
@@ -67,7 +71,8 @@ public class EditFriendsActivity extends ListActivity {
                         usernames[i] = user.getUsername();
                         i++;
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditFriendsActivity.this,
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                            EditFriendsActivity.this,
                             android.R.layout.simple_list_item_checked,
                             usernames);
                     setListAdapter(adapter);
@@ -87,18 +92,29 @@ public class EditFriendsActivity extends ListActivity {
         });
     }
 
+    /**
+     * Set up the {@link android.app.ActionBar}.
+     */
+//    private void setupActionBar() {
+//
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. Use NavUtils to allow users
+                // to navigate up one level in the application structure. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                //
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -107,14 +123,14 @@ public class EditFriendsActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         if (getListView().isItemChecked(position)) {
-            // add friend
+            // add the friend
             mFriendsRelation.add(mUsers.get(position));
-
         }
         else {
             // remove the friend
             mFriendsRelation.remove(mUsers.get(position));
         }
+
         mCurrentUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -123,7 +139,6 @@ public class EditFriendsActivity extends ListActivity {
                 }
             }
         });
-
     }
 
     private void addFriendCheckmarks() {
@@ -149,3 +164,13 @@ public class EditFriendsActivity extends ListActivity {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+

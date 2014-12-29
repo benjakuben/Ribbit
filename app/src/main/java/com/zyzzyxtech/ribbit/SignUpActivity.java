@@ -53,7 +53,7 @@ public class SignUpActivity extends ActionBarActivity {
                     dialog.show();
                 } else {
                     // Create the New User!
-                    setProgressBarIndeterminateVisibility(true);
+                    setSupportProgressBarIndeterminateVisibility(true);
 
                     ParseUser newUser = new ParseUser();
                     newUser.setUsername(username);
@@ -62,7 +62,7 @@ public class SignUpActivity extends ActionBarActivity {
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
-                            setProgressBarIndeterminateVisibility(false);
+                            setSupportProgressBarIndeterminateVisibility(false);
                             if (e == null) {
                                 // Success!
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
