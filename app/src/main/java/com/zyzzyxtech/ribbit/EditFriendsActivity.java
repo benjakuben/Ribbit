@@ -40,7 +40,7 @@ public class EditFriendsActivity extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_edit_friends);
         // Show the Up button in the action bar.
-//         setupActionBar();
+//        setupActionBar();
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
