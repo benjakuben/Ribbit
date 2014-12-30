@@ -14,7 +14,7 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".RibbitApplication"
