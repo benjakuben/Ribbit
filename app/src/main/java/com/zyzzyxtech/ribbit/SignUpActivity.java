@@ -1,10 +1,9 @@
 package com.zyzzyxtech.ribbit;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -16,7 +15,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 
-public class SignUpActivity extends ActionBarActivity {
+public class SignUpActivity extends Activity {
 
     protected EditText mUsername;
     protected EditText mPassword;
@@ -53,7 +52,7 @@ public class SignUpActivity extends ActionBarActivity {
                     dialog.show();
                 } else {
                     // Create the New User!
-                    setSupportProgressBarIndeterminateVisibility(true);
+                    setProgressBarIndeterminateVisibility(true);
 
                     ParseUser newUser = new ParseUser();
                     newUser.setUsername(username);
@@ -62,7 +61,7 @@ public class SignUpActivity extends ActionBarActivity {
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
-                            setSupportProgressBarIndeterminateVisibility(false);
+                            setProgressBarIndeterminateVisibility(false);
                             if (e == null) {
                                 // Success!
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);

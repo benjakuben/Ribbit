@@ -6,14 +6,14 @@
     <item android:id="@+id/action_camera"
           android:title="@string/menu_camera_label"
           android:icon="@drawable/ic_action_camera"
-          app:showAsAction="always"/>
+          android:showAsAction="always"/>
     
     <item android:id="@+id/action_edit_friends"
           android:title="@string/menu_edit_friends_label"
           android:orderInCategory="100"
-          app:showAsAction="never"/>
+          android:showAsAction="never"/>
     <item android:id="@+id/action_logout"
           android:title="@string/menu_logout_label"
           android:orderInCategory="100"
-          app:showAsAction="never"/>
+          android:showAsAction="never"/>
 </menu>

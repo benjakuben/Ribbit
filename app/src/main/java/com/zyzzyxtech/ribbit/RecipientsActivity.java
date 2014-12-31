@@ -1,11 +1,9 @@
 package com.zyzzyxtech.ribbit;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
